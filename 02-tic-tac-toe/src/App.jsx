@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react"
 import confetti from "canvas-confetti" 
+
 import { Square } from "./components/Square"
 import { TURNS} from "./constants"
-import { Turns } from "./components/Turns"
 import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
 import { WinnerModal } from "./components/WinnerModal.jsx"
 import { saveGameToStorage, resetGameStorage } from "./logic/storage"
@@ -65,7 +65,7 @@ function App() {
   return (
     <main className=" w-fit  my-10 text-center">
       <h1 className="text-5xl text-white mb-4">Tic Tac Toe</h1>
-      <button onClick={resetGame} className="py-2 px-3 m-6 bg-transparent border-2 border-white cursor-pointer w-24 rounded-md font-bold text-white transition-all duration-75 hover:bg-white hover:text-black">Reset game</button>
+      <button onClick={resetGame} className="py-2 px-2 m-6 bg-transparent border-2 border-white cursor-pointer w-28 rounded-md font-bold text-white transition-all duration-75 hover:bg-white hover:text-black">Reset game</button>
       <section className="grid grid-cols-3 gap-2">
         {
           board.map((square, index)=>{
@@ -81,7 +81,14 @@ function App() {
           })
         }
       </section>
-        <Turns/>
+        <section className="flex justify-center my-4 mx-auto w-fit relative rounded-lg">
+      <Square isTurn isSelected={turn === TURNS.X}>
+          {TURNS.X}
+        </Square>
+        <Square isTurn isSelected={turn === TURNS.O}>
+          {TURNS.O}
+        </Square>
+      </section>
         <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
   )
